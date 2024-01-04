@@ -1,16 +1,16 @@
 import { Helmet } from 'react-helmet-async';
 
-import { UserView } from 'src/sections/user/view';
+import { OrganizationView } from 'src/sections/organization/view';
 
 // ----------------------------------------------------------------------
 
-export default function UserPage() {
+export default function ChooseOrganizationPage() {
   return (
     <>
       <Helmet>
-        <title> User </title>
+        <title> Organization </title>
       </Helmet>
-      <UserView />
+      <OrganizationView />
     </>
   );
 }
