@@ -1,5 +1,7 @@
+/* eslint-disable perfectionist/sort-imports */
 import { lazy, Suspense } from 'react';
 import { Outlet, Navigate, useRoutes } from 'react-router-dom';
+import { useAppContext } from 'src/context/appContext';
 
 import DashboardLayout from 'src/layouts/dashboard';
 
@@ -14,8 +16,18 @@ export const Page404 = lazy(() => import('src/pages/page-not-found'));
 // ----------------------------------------------------------------------
 
 export default function Router() {
+  const { user } = useAppContext()
+  
   const routes = useRoutes([
     {
+      path: 'login',
+      element: <LoginPage />,
+    },
+    {
+      path: 'register',
+      element: <LoginPage />,
+    },
+    user ? {
       element: (
         <DashboardLayout>
           <Suspense>
@@ -29,11 +41,9 @@ export default function Router() {
         { path: 'user', element: <UserPage /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
-      ],
-    },
-    {
-      path: 'login',
-      element: <LoginPage />,
+      ]
+    } : {
+      path: '*', element: <Navigate to="/login" />
     },
     {
       path: '404',

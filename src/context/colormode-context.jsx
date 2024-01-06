@@ -7,7 +7,7 @@ export const ColorModeContext = createContext({
 });
 
 export default function ColorModeContextProvider({ children }) {
-    const [mode, setMode] = useState('light');
+    const [mode, setMode] = useState('dark');
 
     const colorMode = useMemo(
       () => ({
